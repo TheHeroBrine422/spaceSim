@@ -1,0 +1,64 @@
+<html>
+  <head>
+    <script src="planet.js"></script>
+    <script src="lib.js"></script>
+    <script src="vector.js"></script>
+    <style>
+      .infoBox {
+          position:absolute;
+          left:1%
+      }
+    </style>
+  </head>
+  <body>
+    <div class="infoBox">
+      <p id="earthInfo"></p>
+      <p id="sunInfo"></p>
+    </div>
+
+    <canvas id="canvas"></canvas>
+    <script>
+    earth = new Planet(200,500,1e5, "#00FF00",new Vector(-12.93,Math.PI*3/2)) // roughly perfect orbit: 12.93
+    sun = new Planet(500,500,1e15, "#FFFF00", new Vector(0,0))
+    tickSpeed = 0.25*1 // how much time is computed in each frame. Effects accuracy. Can be raised as high as you want. Lower is more accurate.
+    speedScaleFactor = 500 // How much faster then real time those frames are displayed. Limited by the speed of your computer. No affect on accuracy. Going too high on this will not cause issues, but the full effect will not be realized
+    var c = document.getElementById("canvas");
+    var ctx = c.getContext("2d");
+    c.width = document.body.clientWidth;
+    c.height = document.body.clientHeight;
+    extraFrames = 0
+
+    function update() {
+
+      //console.log("Earth:\n"+earth.toString(3))
+
+      earth.gravity(sun)
+
+      //sun.gravity(earth)
+      earth.tick(tickSpeed)
+      sun.tick(tickSpeed)
+      ctx.clearRect(0, 0, c.width, c.height);
+      earth.draw(ctx)
+      sun.draw(ctx)
+      //console.log("Earth:\n"+earth.toString(3))
+      //console.log("Sun:\n"+sun.toString())
+      document.getElementById("sunInfo").innerHTML = "Sun:<br />"+sun.toString(2).replace(/\n/g, "<br />");
+      document.getElementById("earthInfo").innerHTML = "Earth:<br />"+earth.toString(2).replace(/\n/g, "<br />");
+
+
+
+      if (earth.x > 600 ) {
+        if (extraFrames >= 2) {
+          //debugger
+        }
+        extraFrames++
+      }
+    }
+
+    /*for (var i = 0; i < 10; i++) {
+      update()
+    }*/
+    intervalID = setInterval(update, tickSpeed*1000/speedScaleFactor)
+    </script>
+  </body>
+<html>
