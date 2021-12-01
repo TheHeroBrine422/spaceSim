@@ -22,12 +22,7 @@ class Simulation {
         this.bodies[i].gravityTick(tempArr)
       }
       for (var i = 0; i < this.bodies.length; i++) {
-        this.bodies[i].tick(tickRate, this.walls)
-      }
-      for (var i = 0; i < this.bodies.length; i++) {
-        if (this.bodies[i].velocity.magnitude > this.velocityCap) {
-          this.bodies[i].velocity.magnitude = this.velocityCap
-        }
+        this.bodies[i].tick(tickRate, this.walls, this.velocityCap)
       }
     }
 

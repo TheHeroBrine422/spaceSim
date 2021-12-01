@@ -38,8 +38,12 @@ class Body {
       }
     }
 
-    tick(tickRate, walls) { // tickRate is in seconds.
+    tick(tickRate, walls, velCap) { // tickRate is in seconds.
       this.velocity = this.velocity.add(this.acceleration.scale(tickRate))
+
+      if (this.velocity.magnitude > velCap) {
+        this.velocity.magnitude = velCap
+      }
 
       if (walls) {
         if (this.x+this.velocity.x()*tickRate < 0) { // direction can be -pi*1/2 to -pi*2/2 and pi*1/2 to pi*2/2
