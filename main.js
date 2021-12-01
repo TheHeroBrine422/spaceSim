@@ -36,8 +36,16 @@ function update() {
   ctx.clearRect(0, 0, c.width, c.height);
   earth.draw(ctx)
   sun.draw(ctx)
-  document.getElementById("sunInfo").innerHTML = "Sun:<br />"+sun.toString(2).replace(/\n/g, "<br />");
-  document.getElementById("earthInfo").innerHTML = "Earth:<br />"+earth.toString(2).replace(/\n/g, "<br />");
+  earthInfo = "Earth:<br />"
+  earthInfo += "Position: ("+earth.x.toFixed(2)+","+earth.y.toFixed(2)+")<br />"
+  earthInfo += "Velocity: "+ earth.velocity.magnitude.toFixed(2)+" m/s "+(earth.velocity.direction/Math.PI*180).toFixed(2)+" degrees<br />"
+  earthInfo += "Acceleration: "+ earth.acceleration.magnitude.toFixed(2)+" m/s^2 "+(earth.acceleration.direction/Math.PI*180).toFixed(2)+" degrees<br />"
+  sunInfo = "Earth:<br />"
+  sunInfo += "Position: ("+sun.x.toFixed(2)+","+sun.y.toFixed(2)+")<br />"
+  sunInfo += "Velocity: "+ sun.velocity.magnitude.toFixed(2)+" m/s "+(sun.velocity.direction/Math.PI*180).toFixed(2)+" degrees<br />"
+  sunInfo += "Acceleration: "+ sun.acceleration.magnitude.toFixed(2)+" m/s^2 "+(sun.acceleration.direction/Math.PI*180).toFixed(2)+" degrees<br />"
+  document.getElementById("earthInfo").innerHTML = earthInfo
+  document.getElementById("sunInfo").innerHTML = sunInfo
 
 
   setTimeout(update, 1000/document.getElementById("framerate").value)
