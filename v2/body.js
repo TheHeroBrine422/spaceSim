@@ -1,27 +1,42 @@
-class Planet {
-    constructor(xPos, yPos, mass, color, startingVel) { // xPos/yPos is in meters, mass is in kg
+class Body {
+    constructor(name, xPos, yPos, mass, color, startingVel, gravity) { // xPos/yPos is in meters, mass is in kg
+        this.name = name
         this.x = xPos;
         this.y = yPos;
         this.mass = mass;
         this.velocity = startingVel
         this.acceleration = new Vector(0,0)
         this.color = color
+        this.gravityEnabled = gravity
     }
 
-    gravity(otherPlanet) {
+    gravity(otherBody) {
       let G = 6.6743e-11
-      let distance = this.distance(otherPlanet)
-      let force = G*(this.mass*otherPlanet.mass)/Math.pow(distance,2)
+      let distance = this.distance(otherBody)
+      let force = G*(this.mass*otherBody.mass)/Math.pow(distance,2)
 
-      this.acceleration.magnitude = force/this.mass
-      this.acceleration.direction = Math.atan2(otherPlanet.y-this.y, otherPlanet.x-this.x)
+      return new Vector(force/this.mass, Math.atan2(otherBody.y-this.y, otherBody.x-this.x))
     }
 
-    distance(otherPlanet) {
-      return distance(this.x, this.y, otherPlanet.x, otherPlanet.y)
+    distance(otherBody) {
+      return Math.sqrt(Math.pow(this.x-otherBody.x, 2)+Math.pow(this.y-otherBody.y, 2))
     }
 
-    tick(tickRate) { // tickRate is in seconds.
+    tick(tickRate, bodies) { // tickRate is in seconds.
+      if (this.gravityEnabled) {
+        let combinedVector = new Vector(0,0)
+
+        for (var i = 0; i < bodies.length; i++) {
+          let temp = this.gravity(bodies[i])
+
+          combinedVector = combinedVector.add(temp)
+        }
+
+        this.acceleration = combinedVector
+      } else {
+        this.acceleration = new Vector(0,0)
+      }
+
       this.velocity = this.velocity.add(this.acceleration.scale(tickRate))
       this.x += this.velocity.x()*tickRate
       this.y += this.velocity.y()*tickRate
@@ -35,7 +50,7 @@ class Planet {
     }
 
     toString(precision) {
-      let out = ""
+      let out = "Name: "+this.name+"\n"
       out += "Position: ("+this.x.toFixed(precision)+","+this.y.toFixed(precision)+")\n"
       out += "Mass: "+this.mass+"\n"
       out += "Velocity: "+ this.velocity.magnitude.toFixed(precision)+" m/s "+(this.velocity.direction/Math.PI*180).toFixed(precision)+" degrees\n"

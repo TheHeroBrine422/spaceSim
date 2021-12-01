@@ -1,0 +1,91 @@
+<html>
+  <head>
+    <script src="planet.js"></script>
+    <script src="vector.js"></script>
+    <script src="main.js"></script>
+    <style>
+    body {font-family: Arial, Helvetica, sans-serif; font-size: 14px;}
+
+
+      .infoBox {
+          position:absolute;
+          right:0%;
+          bottom:0%;
+          width:25%;
+      }
+      .optionsBox {
+          position:absolute;
+          right:0%;
+          width:25%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="infoBox">
+      <h1>Info:</h1>
+      <p id="earthInfo"></p>
+      <p id="sunInfo"></p>
+    </div>
+
+    <div class="optionsBox">
+      <h1>Options:</h1>
+      <p>Warning: If a option says it is a starting option, it requires a reset to take effect.</p>
+      <label for="simTimePerSec">Simulated Time Per Frame (seconds):</label>
+      <input type="number" value="0.25" id="simTimePerSec"></br>
+      <label for="framerate">Framerate (FPS): </label>
+      <input type="number" value="200" id="framerate">
+      <p id="simTimePerSecInfo">Simulated Time Per Second: </p>
+
+      <h3>Earth:</h3>
+      <label for="earthMass">Mass (kg):</label>
+      <input type="number" value="1e13" id="earthMass">
+      </br>
+      <label for="earthXStartingPos">Starting X Position (m):</label>
+      <input type="number" value="100" id="earthXStartingPos">
+      </br>
+      <label for="earthYStartingPos">Starting Y Position (m):</label>
+      <input type="number" value="500" id="earthYStartingPos">
+      </br>
+      <label for="earthStartingVelMag">Starting Velocity (m/s):</label>
+      <input type="number" value="12.93" id="earthStartingVelMag">
+      </br>
+      <label for="earthStartingVelDir">Starting Velocity Direction (radians):</label>
+      <input type="number" value="0.5" id="earthStartingVelDir">
+      </br>
+      <label for="earthGravity">Gravity Enabled:</label>
+      <input type="checkbox" checked id="earthGravity">
+      <button onclick="resetEarthVelocity()">Zero Velocity</button>
+      </br>
+      <label for="earthColor">Color:</label>
+      <input type="color" value="#00FF00" id="earthColor">
+
+      <h3>Sun:</h3>
+      <label for="sunMass">Mass (kg):</label>
+      <input type="number" value="1e15" id="sunMass">
+      </br>
+      <label for="sunXStartingPos">Starting X Position (m):</label>
+      <input type="number" value="500" id="sunXStartingPos">
+      </br>
+      <label for="sunYStartingPos">Starting Y Position (m):</label>
+      <input type="number" value="500" id="sunYStartingPos">
+      </br>
+      <label for="sunStartingVelMag">Starting Velocity (m/s):</label>
+      <input type="number" value="0" id="sunStartingVelMag">
+      </br>
+      <label for="sunStartingVelDir">Starting Velocity Direction (radians):</label>
+      <input type="number" value="0" id="sunStartingVelDir">
+      </br>
+      <label for="sunGravity">Gravity Enabled:</label>
+      <input type="checkbox" value="true" id="sunGravity">
+      <button onclick="resetSunVelocity()">Zero Velocity</button>
+      </br>
+      <label for="sunColor">Color:</label>
+      <input type="color" value="#FFFF00" id="sunColor">
+
+    </br></br>
+      <button onclick="reset()">Reset Simulation</button>
+    </div>
+
+    <canvas id="canvas"></canvas>
+  </body>
+<html>
