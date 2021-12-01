@@ -32,22 +32,25 @@ function update() {
   } else {
     sun.acceleration = new Vector(0,0)
   }
+
   earth.tick(document.getElementById("simTimePerSec").value)
   sun.tick(document.getElementById("simTimePerSec").value)
+  
   ctx.clearRect(0, 0, c.width, c.height);
   earth.draw(ctx)
   sun.draw(ctx)
+
   earthInfo = "Earth:<br />"
   earthInfo += "Position: ("+earth.x.toFixed(2)+","+earth.y.toFixed(2)+")<br />"
   earthInfo += "Velocity: "+ earth.velocity.magnitude.toFixed(2)+" m/s "+(earth.velocity.direction/Math.PI*180).toFixed(2)+" degrees<br />"
   earthInfo += "Acceleration: "+ earth.acceleration.magnitude.toFixed(2)+" m/s^2 "+(earth.acceleration.direction/Math.PI*180).toFixed(2)+" degrees<br />"
-  sunInfo = "Earth:<br />"
+  document.getElementById("earthInfo").innerHTML = earthInfo
+
+  sunInfo = "Sun:<br />"
   sunInfo += "Position: ("+sun.x.toFixed(2)+","+sun.y.toFixed(2)+")<br />"
   sunInfo += "Velocity: "+ sun.velocity.magnitude.toFixed(2)+" m/s "+(sun.velocity.direction/Math.PI*180).toFixed(2)+" degrees<br />"
   sunInfo += "Acceleration: "+ sun.acceleration.magnitude.toFixed(2)+" m/s^2 "+(sun.acceleration.direction/Math.PI*180).toFixed(2)+" degrees<br />"
-  document.getElementById("earthInfo").innerHTML = earthInfo
   document.getElementById("sunInfo").innerHTML = sunInfo
-
 
   setTimeout(update, 1000/document.getElementById("framerate").value)
 }
