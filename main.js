@@ -13,6 +13,7 @@ window.addEventListener('load', (event) => {
 
   reset()
   update()
+  STPSUpdate()
 });
 
 function reset() {
