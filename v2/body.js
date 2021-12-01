@@ -22,7 +22,7 @@ class Body {
       return Math.sqrt(Math.pow(this.x-otherBody.x, 2)+Math.pow(this.y-otherBody.y, 2))
     }
 
-    tick(tickRate, bodies) { // tickRate is in seconds.
+    gravityTick(bodies) {
       if (this.gravityEnabled) {
         let combinedVector = new Vector(0,0)
 
@@ -36,8 +36,26 @@ class Body {
       } else {
         this.acceleration = new Vector(0,0)
       }
+    }
 
+    tick(tickRate, walls) { // tickRate is in seconds.
       this.velocity = this.velocity.add(this.acceleration.scale(tickRate))
+
+      if (walls) {
+        if (this.x+this.velocity.x()*tickRate < 0) { // direction can be -pi*1/2 to -pi*2/2 and pi*1/2 to pi*2/2
+          this.velocity.direction = this.velocity.direction*-1+Math.PI
+
+        } else if (this.x+this.velocity.x()*tickRate > c.width) { // direction can be -pi*1/2 to pi*1/2
+          this.velocity.direction = this.velocity.direction*-1+Math.PI
+
+        } else if (this.y+this.velocity.y()*tickRate < 0) {
+          this.velocity.direction = this.velocity.direction*-1
+        } else if (this.y+this.velocity.x()*tickRate > c.height) {
+          this.velocity.direction = this.velocity.direction*-1
+
+        }//
+      }
+
       this.x += this.velocity.x()*tickRate
       this.y += this.velocity.y()*tickRate
     }

@@ -1,6 +1,10 @@
 class Simulation {
-    constructor() { // xPos/yPos is in meters, mass is in kg
+    constructor(c, walls, velocityCap) { // xPos/yPos is in meters, mass is in kg
         this.bodies = []
+        this.c = c
+        this.ctx = this.c.getContext("2d");
+        this.walls = walls
+        this.velocityCap = velocityCap
     }
 
     addBody(body) {
@@ -15,16 +19,36 @@ class Simulation {
             tempArr.push(this.bodies[j])
           }
         }
-        console.log(tempArr)
-        this.bodies[i].tick(tickRate, tempArr)
+        this.bodies[i].gravityTick(tempArr)
+      }
+      for (var i = 0; i < this.bodies.length; i++) {
+        this.bodies[i].tick(tickRate, this.walls)
+      }
+      for (var i = 0; i < this.bodies.length; i++) {
+        if (this.bodies[i].velocity.magnitude > this.velocityCap) {
+          this.bodies[i].velocity.magnitude = this.velocityCap
+        }
       }
     }
 
     draw(ctx) {
-      ctx.clearRect(0, 0, c.width, c.height);
+      this.ctx.clearRect(0, 0, this.c.width, this.c.height);
       for (var i = 0; i < this.bodies.length; i++) {
-        this.bodies[i].draw(ctx)
+        this.bodies[i].draw(this.ctx)
       }
+    }
+
+    dynamicSTPS() {
+      let closestBodies = Infinity
+      for (var i = 0; i < this.bodies.length; i++) {
+        for (var j = 0; j < i; j++) {
+          let len = this.bodies[i].distance(this.bodies[j])
+          if (len < closestBodies) {
+            closestBodies = len
+          }
+        }
+      }
+      document.getElementById("simTimePerSec").value = Math.min(0.25, Math.max(Math.log10(closestBodies/10), 0.01))
     }
 
     toString(precision) {
