@@ -15,7 +15,6 @@ https://theherobrine422.github.io/spaceSim/v1/
 1. Modifiable framerate and seconds simulated per frame/physics tick
 1. Modifiable mass, starting x/y position, starting velocity, gravity, and color.
 
-
 # v2
 
 Simulator that can simulate as many bodies as you want. Many added features from v1.
@@ -38,3 +37,4 @@ https://theherobrine422.github.io/spaceSim/v2/
 1. actual UI for creating bodies.
 1. zoomable camera to allow real world distances
 1. simualtion presets?
+1. better seconds simulated per real second display.

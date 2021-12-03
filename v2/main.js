@@ -29,15 +29,15 @@ function reset() {
   // constructor(name, xPos, yPos, mass, radius, radiusDisplayScale, color, startingVel, gravity) { // xPos/yPos is in meters, mass is in kg
 
   sim.addBody(new Body("Sun", 500, 500, 1e16, 50, 1, "#FFFF00", new Vector(0,0), true, 0)) // Inner Planets
-  /*sim.addBody(new Body("Mercury", 200+(300*(1-0.4)), 500, 1e16*(3.28e23/2e30), 10*(2.4/696), 250, "#949494", new Vector(75,Math.PI*0.5), true, 0))
+  sim.addBody(new Body("Mercury", 200+(300*(1-0.4)), 500, 1e16*(3.28e23/2e30), 10*(2.4/696), 250, "#949494", new Vector(75,Math.PI*0.5), true, 0))
   sim.addBody(new Body("Venus", 200+300*(1-0.72), 500, 1e16*(4.85e24/2e30), 10*(6.05/696), 250, "#eed053", new Vector(56,Math.PI*0.5), true, 0))
   sim.addBody(new Body("Earth", 200+300*(1-1), 500, 1e16*(5.97e24/2e30), 10*(6.37/696), 250, "#00FF00",  new Vector(47.5,Math.PI*0.5), true, 0))
-  sim.addBody(new Body("Mars", 200+300*(1-1.5), 500, 1e16*(6.41e23/2e30), 10*(3.4/696), 250, "#FF0000", new Vector(38.6,Math.PI*0.5), true, 0))*/
+  sim.addBody(new Body("Mars", 200+300*(1-1.5), 500, 1e16*(6.41e23/2e30), 10*(3.4/696), 250, "#FF0000", new Vector(38.6,Math.PI*0.5), true, 0))
 
-  sim.addBody(new Body("Mercury", 200+(300*(1-0.4)), 500, 1e16*(3.28e23/2e30), 10*(2.4/696), 75, "#949494", new Vector(75,Math.PI*0.5), true, 0))
+  /*sim.addBody(new Body("Mercury", 200+(300*(1-0.4)), 500, 1e16*(3.28e23/2e30), 10*(2.4/696), 75, "#949494", new Vector(75,Math.PI*0.5), true, 0))
   sim.addBody(new Body("Venus", 200+300*(1-0.72), 500, 1e16*(4.85e24/2e30), 10*(6.05/696), 50, "#eed053", new Vector(56,Math.PI*0.5), true, 0))
   sim.addBody(new Body("Earth", 200+300*(1-1), 500, 1e16*(5.97e24/2e30), 10*(6.37/696), 50, "#00FF00",  new Vector(47.5,Math.PI*0.5), true, 0))
-  sim.addBody(new Body("Mars", 200+300*(1-1.5), 500, 1e16*(6.41e23/2e30), 10*(3.4/696), 50, "#FF0000", new Vector(38.6,Math.PI*0.5), true, 0))
+  sim.addBody(new Body("Mars", 200+300*(1-1.5), 500, 1e16*(6.41e23/2e30), 10*(3.4/696), 50, "#FF0000", new Vector(38.6,Math.PI*0.5), true, 0))*/
 
   sim.addBody(new Body("Rogue Star", 2000, 700, 1e16, 50, 1, "#FFFF00", new Vector(100/5,Math.PI), true, 100))
 
