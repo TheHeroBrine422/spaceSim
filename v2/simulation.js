@@ -49,7 +49,7 @@ class Simulation {
       if (this.collisionMode == 1) { // collisions
         for (var i = 0; i < this.bodies.length; i++) {
           for (var j = 0; j < i; j++) {
-            if (this.bodies[i].distance(this.bodies[j]) < this.bodies[i].radius+this.bodies[j].radius) {
+            if (this.bodies[i].distance(this.bodies[j]) < Math.min(this.bodies[i].radius,this.bodies[j].radius)) {
               let combinedBody = this.bodies[i].combine(this.bodies[j])
 
               this.bodies.splice(j, 1)
