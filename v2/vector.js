@@ -1,7 +1,7 @@
 class Vector {
     constructor(magnitude, direction) {
-        this.magnitude = magnitude;
-        this.direction = direction
+      this.magnitude = magnitude;
+      this.direction = direction
     }
 
     add(v2) {
