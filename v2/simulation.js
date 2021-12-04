@@ -7,7 +7,7 @@ class Simulation {
       this.walls = walls
       this.velocityCap = velocityCap
       this.time = 0
-      this.collisionMode = collisionMode // 0/not recognized = no collisions, 1 = combine on collision
+      this.collisionMode = collisionMode // 0/not recognized = no collisions, 1 = combine on collision of edges, 2 = combine on collision of edge and center
     }
 
     addBody(body) {
@@ -46,10 +46,10 @@ class Simulation {
         this.bodies[i].tick(tickRate, this.walls, this.velocityCap, this.c)
       }
 
-      if (this.collisionMode == 1) { // collisions
+      if (this.collisionMode == 1 || this.collisionMode == 2) { // collisions
         for (var i = 0; i < this.bodies.length; i++) {
           for (var j = 0; j < i; j++) {
-            if (this.bodies[i].distance(this.bodies[j]) < Math.min(this.bodies[i].radius,this.bodies[j].radius)) {
+            if ((this.bodies[i].distance(this.bodies[j]) < Math.min(this.bodies[i].radius,this.bodies[j].radius) && this.collisionMode == 2) || (this.bodies[i].distance(this.bodies[j]) < this.bodies[i].radius+this.bodies[j].radius && this.collisionMode == 1)) {
               let combinedBody = this.bodies[i].combine(this.bodies[j])
 
               this.bodies.splice(j, 1)

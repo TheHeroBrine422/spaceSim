@@ -21,7 +21,7 @@ function resizeCanvas() {
 }
 
 function reset() {
-  sim = new Simulation(document.getElementById("canvas"), document.getElementById("walls").checked, Number(document.getElementById("velCap").value), 1)
+  sim = new Simulation(document.getElementById("canvas"), document.getElementById("walls").checked, Number(document.getElementById("velCap").value), 2)
 
   /*sim.addBody(new Body("Earth", 100, 500, 1e10, 26, "#00FF00", new Vector(40,Math.PI*0.5), true)) // earth sun orbit
   sim.addBody(new Body("Sun", 500, 500, 1e16, 34, "#FFFF00", new Vector(0,0), false))*/

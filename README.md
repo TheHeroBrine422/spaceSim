@@ -21,6 +21,14 @@ Simulator that can simulate as many bodies as you want. Many added features from
 
 https://theherobrine422.github.io/spaceSim/v2/
 
+Currently it is not possible to change the bodies in the simulation from the UI, and several of the simulation settings. It is possible to overwrite the reset() function or sim variable implemented in main.js to create a new simulation.
+
+If you overwrite reset() all you should have to do is hit the reset Simulation button assuming you wrote your function correctly.
+
+If you overwrite sim directly the animation should instantly start.
+
+Both options require you to overwrite the variable sim with a new instance of the Simulation class and then add bodies to sim through sim.addBody. If you read over the function reset() in main.js, and the constructors of simulation.js, body.js, and vector.js you should be able to figure out how to create your own simulation.
+
 ### Features:
 
 1. All features from v1
