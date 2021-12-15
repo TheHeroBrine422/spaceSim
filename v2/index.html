@@ -64,9 +64,9 @@
       <input type="number" value="1e100" id="velCap">
 
 
-      <p>Currently no code to change the bodies. If you want to overwrite reset() using the console you should be able to write your own simulation.</p>
-
-      <p>Default simulation currently is a simulation of the inner planets of the solar system. 100 simulated seconds after the simulation starts, a rogue star appears. It then merges with the sun and knocks all the planets out of orbit. 
+      <p>Currently there is no code to create a custom simulation. You should be able to create a custom simualtion using code by overwriting the sim variable using the devtool's console. If you want to do this, I would recommend you look at the source code for the site. The file that controls the simulation is located at <a href="https://github.com/TheHeroBrine422/spaceSim/blob/main/v2/main.js">https://github.com/TheHeroBrine422/spaceSim/blob/main/v2/main.js</a></p>
+      
+      <p>If the bodies move off the bottom or the right of the screen you can zoom the page out using control+- or the menu in the top right of your browser and you should be able to see the planets again.</p>
       <!--<h3>Earth:</h3>
       <label for="earthMass">Mass (kg):</label>
       <input type="number" value="1e13" id="earthMass">
@@ -112,9 +112,16 @@
       </br>
       <label for="sunColor">Color:</label>
       <input type="color" value="#FFFF00" id="sunColor">-->
-
+      <h1>Presets: </h1>
+      <button onclick="innerPlanetsRogueStarSim()">Inner Planets and Rogue Star Simulation</button>
     </br></br>
-      <button onclick="reset()">Reset Simulation</button>
+      <button onclick="innerPlanetsSim()">Inner Planets Simulation</button>
+    </br></br>
+      <button onclick="threeBodyUnstable()">Unstable Three Body Simulation</button>
+    </br></br>
+      <button onclick="threeBodySemiStable()">Semi Stable Three Body Simulation</button>
+    </br></br>
+      <button onclick="randomSim()">Random 6 Simulation</button>
     </div>
 
     <canvas id="canvas"></canvas>

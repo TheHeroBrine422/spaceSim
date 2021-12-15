@@ -46,3 +46,7 @@ Both options require you to overwrite the variable sim with a new instance of th
 1. zoomable camera to allow real world distances
 1. simualtion presets?
 1. better seconds simulated per real second display.
+
+### Bug Fixes:
+
+1. body.combine() velocity fix. When the base planet has a signficantly lower mass than otherPlanet, the velocity becomes ridiculiously large. Example: If Mercury is the base planet and the Sun is otherPlanet from the rogue star inner planets simulation, then the velocity goes up to 3e8 m/s
