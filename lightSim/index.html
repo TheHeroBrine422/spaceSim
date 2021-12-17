@@ -1,0 +1,129 @@
+<html>
+  <head>
+    <script src="body.js"></script>
+    <script src="vector.js"></script>
+    <script src="main.js"></script>
+    <script src="simulation.js"></script>
+    <script src="lib.js"></script>
+    <style>
+    body {font-family: Arial, Helvetica, sans-serif; font-size: 14px; background-color: black; color: white;}
+
+
+      .infoBox {
+          position:absolute;
+          top:66%;
+          right:0%;
+          height:34%;
+          width:25%;
+          overflow-y:auto;
+          border: 2px solid grey;
+          border-right-style: none;
+          border-bottom-style: none;
+
+      }
+      .optionsBox {
+          position:absolute;
+          top:0%;
+          right:0%;
+          height:66%;
+          width:25%;
+          overflow-y:auto;
+          border: 2px solid grey;
+          border-top-style: none;
+          border-right-style: none;
+
+      }
+      #canvas {
+        position:absolute;
+        top: 0px;
+        left: 0px;
+        height: 100%;
+        width: 75%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="infoBox" class="infoBox">
+      <h1>Info:</h1>
+      <p id="earthInfo"></p>
+      <p id="sunInfo"></p>
+    </div>
+
+    <div class="optionsBox">
+      <h1>Options:</h1>
+      <p>Warning: If a option is in bold, it requires a reset to take effect.</p>
+      <label for="simTimePerSec">Simulated Time Per Frame (seconds):</label>
+      <input type="number" value="0.1" id="simTimePerSec"></br>
+      <label for="framerate">Framerate (FPS): </label>
+      <input type="number" value="200" id="framerate">
+      <p id="simTimePerSecInfo">Simulated Time Per Second: </p>
+
+      <label for="walls" style="font-weight:bold;">Walls:</label>
+      <input type="checkbox" id="walls"></br>
+      <label for="velCap" style="font-weight:bold;">Velocity Cap (set to 1e100 to disable): </label>
+      <input type="number" value="1e100" id="velCap">
+
+
+      <p>Currently there is no code to create a custom simulation. You should be able to create a custom simualtion using code by overwriting the sim variable using the devtool's console. If you want to do this, I would recommend you look at the source code for the site. The file that controls the simulation is located at <a href="https://github.com/TheHeroBrine422/spaceSim/blob/main/v2/main.js">https://github.com/TheHeroBrine422/spaceSim/blob/main/v2/main.js</a></p>
+      
+      <p>If the bodies move off the bottom or the right of the screen you can zoom the page out using control+- or the menu in the top right of your browser and you should be able to see the planets again.</p>
+      <!--<h3>Earth:</h3>
+      <label for="earthMass">Mass (kg):</label>
+      <input type="number" value="1e13" id="earthMass">
+      </br>
+      <label for="earthXStartingPos">Starting X Position (m):</label>
+      <input type="number" value="100" id="earthXStartingPos">
+      </br>
+      <label for="earthYStartingPos">Starting Y Position (m):</label>
+      <input type="number" value="500" id="earthYStartingPos">
+      </br>
+      <label for="earthStartingVelMag">Starting Velocity (m/s):</label>
+      <input type="number" value="12.93" id="earthStartingVelMag">
+      </br>
+      <label for="earthStartingVelDir">Starting Velocity Direction (radians):</label>
+      <input type="number" value="0.5" id="earthStartingVelDir">
+      </br>
+      <label for="earthGravity">Gravity Enabled:</label>
+      <input type="checkbox" checked id="earthGravity">
+      <button onclick="resetEarthVelocity()">Zero Velocity</button>
+      </br>
+      <label for="earthColor">Color:</label>
+      <input type="color" value="#00FF00" id="earthColor">
+
+      <h3>Sun:</h3>
+      <label for="sunMass">Mass (kg):</label>
+      <input type="number" value="1e15" id="sunMass">
+      </br>
+      <label for="sunXStartingPos">Starting X Position (m):</label>
+      <input type="number" value="500" id="sunXStartingPos">
+      </br>
+      <label for="sunYStartingPos">Starting Y Position (m):</label>
+      <input type="number" value="500" id="sunYStartingPos">
+      </br>
+      <label for="sunStartingVelMag">Starting Velocity (m/s):</label>
+      <input type="number" value="0" id="sunStartingVelMag">
+      </br>
+      <label for="sunStartingVelDir">Starting Velocity Direction (radians):</label>
+      <input type="number" value="0" id="sunStartingVelDir">
+      </br>
+      <label for="sunGravity">Gravity Enabled:</label>
+      <input type="checkbox" value="true" id="sunGravity">
+      <button onclick="resetSunVelocity()">Zero Velocity</button>
+      </br>
+      <label for="sunColor">Color:</label>
+      <input type="color" value="#FFFF00" id="sunColor">-->
+      <h1>Presets: </h1>
+      <button onclick="innerPlanetsRogueStarSim()">Inner Planets and Rogue Star Simulation</button>
+    </br></br>
+      <button onclick="innerPlanetsSim()">Inner Planets Simulation</button>
+    </br></br>
+      <button onclick="threeBodyUnstable()">Unstable Three Body Simulation</button>
+    </br></br>
+      <button onclick="threeBodySemiStable()">Semi Stable Three Body Simulation</button>
+    </br></br>
+      <button onclick="randomSim()">Random 6 Simulation</button>
+    </div>
+
+    <canvas id="canvas"></canvas>
+  </body>
+<html>
